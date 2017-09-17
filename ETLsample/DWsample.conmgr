@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DWsample"
+  DTS:DTSID="{5274FF35-7388-4A1E-86AA-58E094B156B2}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=robdb12345.c0pxq2k7mrql.eu-west-2.rds.amazonaws.com;User ID=robwieczorek;Initial Catalog=DWsample;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAkdwll/TYZk6gQYks5dNIIAAAAAACAAAAAAAQZgAAAAEAACAAAABez3dZIh7e38WStdnu+wOAGTnVLkhQdoDo8DWnGMKz9wAAAAAOgAAAAAIAACAAAABUfyR0t9rq8KcraVmjzCvYPc1+PYKWg5OFmdHcqDaw5oAAAAA1f/1cPMYxCXmbX6l1attwNhO9tOwkSur+7UbVKL7roLsQw8OEbSqYtZ65lhCSkvRKJZGu1lVNUgjdM1g282ymLfingqn7iCyUGvzRJgKFSVMtBQxmWRXP6+RO1OrPjPGF4r//bTyIhhY6Kchu4p4cslZPfbys/+Faj5jkqNhnxkAAAAC80Qa3A7uZXVom2xeOgfkc8D1+VCluJ4JY/OJo3cCCZhBGFd2z8i+uTV7IVjFj+my/iQTjkOTEb6uU3pzc8WCu</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
