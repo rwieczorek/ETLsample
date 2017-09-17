@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DWsample_ADO"
+  DTS:DTSID="{A1AEB19D-33C9-49D3-9FA4-2565DCB9C73A}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=robdb12345.c0pxq2k7mrql.eu-west-2.rds.amazonaws.com;User ID=robwieczorek;Initial Catalog=DWsample;Persist Security Info=True;Application Name=SSIS-ETLsample-{A1AEB19D-33C9-49D3-9FA4-2565DCB9C73A}robdb12345.c0pxq2k7mrql.eu-west-2.rds.amazonaws.com.DWsample.robwieczorek;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAkdwll/TYZk6gQYks5dNIIAAAAAACAAAAAAAQZgAAAAEAACAAAACRRZkGXVcDMn+IkiYZ41MSzV8L60FKG5Y/6xC2iwgwegAAAAAOgAAAAAIAACAAAAAqLjNHAUqKmhJ7MpvpARNOegQWB14FT+MUD6xeiBrOnYAAAABqDC3/ivRi9M3QfYAsHr85pqRNt1rlPQAQuvdw7QOLK9L87FHPFgOBoe5eJAmOWe3ErPUvSUFBfa32MjOs3x63RSfiYXmA7mHqp6bRTXciYr3doruMhy91J5w377GJjBeVT9BbD3mP1NFz2wmSE6hA9s/TmrULPrS3DydqiDfl4UAAAAB3H5+6y0rcl4o9ZFFTX/zwmrW4sJlHoh1NfLpy6TmxrWPfDVuwvexyprgTzHHXHzmMhIS88LtCvMpaxtxsA0G5</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

@@ -26,18 +26,20 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-QTFVU95</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAkdwll/TYZk6gQYks5dNIIAAAAAACAAAAAAAQZgAAAAEAACAAAABCzhgf4QRTHNH0voRA4+XXlWpSxhS12vJZuUH6axG7OQAAAAAOgAAAAAIAACAAAAC0cS3/CnOMTt5SznJdT6G0pXeosEpRU61e1C4abNwvI5AAAACvjiSmxWiQBaJD6mehAxmeWRyxnbrjdEEJb76CiC4AGMqgt1KaYCWOBpuKd8W9PY70DlM3qjCnjI+1dHHg5Uve9Fbn1gQEsiEZbwfe02ZWcrDXhnWyNYg386El3bXTmpFwGeT9gVL8gLH2iTbaxdXtb9oXZH/gtwkYDjVwer47ijKYfk+m+akglYPMgQ3I41xAAAAADUh1ycuBL3ZA1anVneSErN5ZtMlrxfxhpbvycvFRRsyNM+6Y8YfozFkAsz3pu69Z10dZRFMcsIbj/yryZ9erWg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAkdwll/TYZk6gQYks5dNIIAAAAAACAAAAAAAQZgAAAAEAACAAAAAcAkOcjLv+rYo94tJ6Ijx/uzBk0GbR/mz6axDc5yWunwAAAAAOgAAAAAIAACAAAAC7CuxmwpgkXvQxYCq8XKT+oiJgsS/sFaaMdQd0fA/eaZAAAADFTe4oYqEu6RhqR+Mmktyjoi4c0Yu0wNG5a12nNfTFPJYZ6oCcbZfilAwXPz/pa5BDVeYDaiH4EoMiVQZ1rhuQpZ2071q8tEv0xpzAKpP7X5jCUaWbXzVl6uug2xfE9vMjV1LWJAzk2w22sUDeK4cJ969TI94D9t+23JreIK/CiLe+9dhPDZVzfLclPeQHdY1AAAAAV+a+T9V6yBc+GM1Qat5ant7HDnMbHtB6jfhTMp8r9Q8t9oUGYaotp0jQhCDZpMkaj7OLVadUBmDii27NXn1Ygw==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="Package.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Stage feeds - Master.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Stage FeedExampleOne.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
-          <SSIS:ConnectionManager SSIS:Name="DWsample.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="DWsample_OLE.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="DWsample_ADO.conmgr" />
         </SSIS:ConnectionManagers>
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters>
-            <SSIS:Parameter SSIS:Name="CM.DWsample.ConnectionString">
+            <SSIS:Parameter SSIS:Name="CM.DWsample_OLE.ConnectionString">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -52,7 +54,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DWsample.InitialCatalog">
+            <SSIS:Parameter SSIS:Name="CM.DWsample_OLE.InitialCatalog">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -67,7 +69,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DWsample.Password">
+            <SSIS:Parameter SSIS:Name="CM.DWsample_OLE.Password">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -81,7 +83,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DWsample.RetainSameConnection">
+            <SSIS:Parameter SSIS:Name="CM.DWsample_OLE.RetainSameConnection">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -96,7 +98,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DWsample.ServerName">
+            <SSIS:Parameter SSIS:Name="CM.DWsample_OLE.ServerName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -111,7 +113,96 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DWsample.UserName">
+            <SSIS:Parameter SSIS:Name="CM.DWsample_OLE.UserName">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">robwieczorek</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.DWsample_ADO.ConnectionString">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=robdb12345.c0pxq2k7mrql.eu-west-2.rds.amazonaws.com;User ID=robwieczorek;Initial Catalog=DWsample;Persist Security Info=True;Application Name=SSIS-ETLsample-{A1AEB19D-33C9-49D3-9FA4-2565DCB9C73A}robdb12345.c0pxq2k7mrql.eu-west-2.rds.amazonaws.com.DWsample.robwieczorek;</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.DWsample_ADO.InitialCatalog">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">DWsample</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.DWsample_ADO.Password">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.DWsample_ADO.RetainSameConnection">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.DWsample_ADO.ServerName">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">robdb12345.c0pxq2k7mrql.eu-west-2.rds.amazonaws.com</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.DWsample_ADO.UserName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -128,16 +219,33 @@
             </SSIS:Parameter>
           </SSIS:ProjectConnectionParameters>
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="Package.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="Stage feeds - Master.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{E6933522-15C1-4045-9070-CD6835E0897B}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{31986F10-96FA-4DBF-9CA3-A6719A3DDF11}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Stage feeds - Master</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4CA7CE76-6E89-4345-86E0-18B35EF19CF9}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{290233C8-F915-4AE3-A6CC-F873B280F60A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Stage FeedExampleOne.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{858C7F4F-E978-4018-837B-0703338DD1EF}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Stage FeedExampleOne</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{C61BE860-D065-4BF3-8436-778DB9A9E3B4}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
