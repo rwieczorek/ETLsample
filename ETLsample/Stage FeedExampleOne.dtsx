@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Stage FeedExampleOne"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{EDB9C5A7-16F3-4142-87E1-E0764629DDC5}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{7AF0397A-6A7D-4C11-9C96-38386B7541E4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -51,7 +51,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="FeedBatchKey">
       <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
+        DTS:DataType="3">14</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -96,7 +96,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="FeedKey">
       <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
+        DTS:DataType="3">1</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -2911,20 +2911,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\uspUpdateFeedFileLog"
+      DTS:refId="Package\uspUpdateFeedBatchLog"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{A4C0A164-6BF3-4FB5-87FC-71524343FE3A}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="uspUpdateFeedFileLog"
+      DTS:ObjectName="uspUpdateFeedBatchLog"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{5274FF35-7388-4A1E-86AA-58E094B156B2}"
-          SQLTask:SqlStatementSource="EXEC [Auxiliary].[uspUpdateFeedFileLog]&#xA;             @FeedBatchLogKey = ?&#xA;             ,@RowsAffected = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          SQLTask:SqlStatementSource="EXEC [Auxiliary].[uspUpdateFeedBatchLog]&#xA;             @FeedBatchLogKey = ?&#xA;             ,@RowsAffected = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
             SQLTask:DtsVariableName="User::FeedBatchLogKey"
@@ -2981,7 +2981,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
       DTS:From="Package\Data Flow Task"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 4"
-      DTS:To="Package\uspUpdateFeedFileLog" />
+      DTS:To="Package\uspUpdateFeedBatchLog" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -2996,13 +2996,29 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="196.666666666667,42.6666666666667"
-          Id="Package\SQL uspGetFeedByName"
-          TopLeft="110.648146499362,12.0851849690853" />
+          Size="152,42.6666666666667"
+          Id="Package\Data Flow Task"
+          TopLeft="138.333331272006,365.333330698808" />
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Get step by name"
+          TopLeft="107.499998398125,188.533331070741" />
         <NodeLayout
           Size="198.666666666667,42.6666666666667"
           Id="Package\SQL uspAddFeedBatch"
           TopLeft="92.0833319611848,105.733331442674" />
+        <NodeLayout
+          Size="202.666666666667,42.6666666666667"
+          Id="Package\SQL uspAddFeedBatchLog"
+          TopLeft="109.166665039957,261.666664574544" />
+        <NodeLayout
+          Size="196.666666666667,42.6666666666667"
+          Id="Package\SQL uspGetFeedByName"
+          TopLeft="110.648146499362,12.0851849690853" />
+        <NodeLayout
+          Size="196,42.6666666666667"
+          Id="Package\uspUpdateFeedBatchLog"
+          TopLeft="132.916664686054,456.533330915769" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="208.981479832695,54.7518516357519">
@@ -3037,10 +3053,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="164,42.6666666666667"
-          Id="Package\Get step by name"
-          TopLeft="107.499998398125,188.533331070741" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="190.458331846322,148.399998109341">
@@ -3063,10 +3075,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="202.666666666667,42.6666666666667"
-          Id="Package\SQL uspAddFeedBatchLog"
-          TopLeft="109.166665039957,261.666664574544" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="189.499998398125,231.199997737408">
@@ -3101,10 +3109,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="152,42.6666666666667"
-          Id="Package\Data Flow Task"
-          TopLeft="138.333331272006,365.333330698808" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
           TopLeft="212.416664822648,304.33333124121">
@@ -3127,24 +3131,32 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="185.333333333334,42.6666666666667"
-          Id="Package\uspUpdateFeedFileLog"
-          TopLeft="132.916664686054,456.533330915769" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="214.62499797903,407.999997365475">
+          TopLeft="214.333331272006,407.999997365475">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,48.5333335502943"
+              EndConnector="16.583333414048,48.5333335502943"
               Start="0,0"
-              End="0,41.0333335502943">
+              End="16.583333414048,41.0333335502943">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,41.0333335502943" />
+                    End="0,20.2666667751471" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2666667751471"
+                    Point2="0,24.2666667751471"
+                    Point3="4,24.2666667751471" />
+                  <mssgle:LineSegment
+                    End="12.583333414048,24.2666667751471" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12.583333414048,24.2666667751471"
+                    Point2="16.583333414048,24.2666667751471"
+                    Point3="16.583333414048,28.2666667751471" />
+                  <mssgle:LineSegment
+                    End="16.583333414048,41.0333335502943" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3162,6 +3174,22 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="252,42.6666666666667"
+          Id="Package\Data Flow Task\DER FeedBatchRecordError Columns"
+          TopLeft="264.583329390734,81.4666652099292" />
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\SC Add RowNumber"
+          TopLeft="45.4166659899056,184.166664768259" />
+        <NodeLayout
+          Size="212,42.6666666666667"
+          Id="Package\Data Flow Task\Odbc FeedBatchRecordError"
+          TopLeft="249.499997255703,171.166665465633" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="79.1666654869914,375.233331248959" />
+        <NodeLayout
           Size="146.666666666667,42.6666666666667"
           Id="Package\Data Flow Task\SC File Source"
           TopLeft="146.666664481163,16.4666663722197" />
@@ -3169,6 +3197,100 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
           Size="131.333333333334,42.6666666666667"
           Id="Package\Data Flow Task\Row Count"
           TopLeft="64.5833323709666,98.3666649077336" />
+        <NodeLayout
+          Size="190.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\DER Add FeedBatchKey"
+          TopLeft="51.2499992363155,278.399997954369" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Row Count Output 1]"
+          TopLeft="131.499999180436,141.0333315744">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.1333331938584"
+              Start="0,0"
+              End="0,35.6333331938584">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.6333331938584" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Output Error]"
+          TopLeft="293.33333114783,37.7999997055531">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="97.2499982429047,43.6666655043761"
+              Start="0,0"
+              End="97.2499982429047,36.1666655043761">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="93.2499982429047,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="93.2499982429047,0"
+                    Point2="97.2499982429047,0"
+                    Point3="97.2499982429047,4" />
+                  <mssgle:LineSegment
+                    End="97.2499982429047,36.1666655043761" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="68.7237873054047,-17.43359375,57.052421875,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Output 01]"
+          TopLeft="132.749999323239,226.833331434925">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.8333332464099,51.5666665194432"
+              Start="0,0"
+              End="13.8333332464099,44.0666665194432">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.7833332597216" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.7833332597216"
+                    Point2="0,25.7833332597216"
+                    Point3="4,25.7833332597216" />
+                  <mssgle:LineSegment
+                    End="9.83333324640986,25.7833332597216" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.83333324640986,25.7833332597216"
+                    Point2="13.8333332464099,25.7833332597216"
+                    Point3="13.8333332464099,29.7833332597216" />
+                  <mssgle:LineSegment
+                    End="13.8333332464099,44.0666665194432" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Output 0]"
           TopLeft="219.999997814496,59.1333330388864">
@@ -3205,146 +3327,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\Data Flow Task\SC Add RowNumber"
-          TopLeft="45.4166659899056,184.166664768259" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Row Count Output 1]"
-          TopLeft="131.499999180436,141.0333315744">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43.1333331938584"
-              Start="0,0"
-              End="0,35.6333331938584">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.6333331938584" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="190.666666666667,42.6666666666667"
-          Id="Package\Data Flow Task\DER Add FeedBatchKey"
-          TopLeft="51.2499992363155,278.399997954369" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Output 01]"
-          TopLeft="132.749999323239,226.833331434925">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="13.8333332464099,51.5666665194432"
-              Start="0,0"
-              End="13.8333332464099,44.0666665194432">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,21.7833332597216" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.7833332597216"
-                    Point2="0,25.7833332597216"
-                    Point3="4,25.7833332597216" />
-                  <mssgle:LineSegment
-                    End="9.83333324640986,25.7833332597216" />
-                  <mssgle:CubicBezierSegment
-                    Point1="9.83333324640986,25.7833332597216"
-                    Point2="13.8333332464099,25.7833332597216"
-                    Point3="13.8333332464099,29.7833332597216" />
-                  <mssgle:LineSegment
-                    End="13.8333332464099,44.0666665194432" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="172,42.6666666666667"
-          Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="79.1666654869914,375.233331248959" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="146.583332569649,321.066664621035">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="18.5833329173426,54.1666666279237"
-              Start="0,0"
-              End="18.5833329173426,46.6666666279237">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.0833333139619" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,23.0833333139619"
-                    Point2="0,27.0833333139619"
-                    Point3="4,27.0833333139619" />
-                  <mssgle:LineSegment
-                    End="14.5833329173426,27.0833333139619" />
-                  <mssgle:CubicBezierSegment
-                    Point1="14.5833329173426,27.0833333139619"
-                    Point2="18.5833329173426,27.0833333139619"
-                    Point3="18.5833329173426,31.0833333139619" />
-                  <mssgle:LineSegment
-                    End="18.5833329173426,46.6666666279237" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="252,42.6666666666667"
-          Id="Package\Data Flow Task\DER FeedBatchRecordError Columns"
-          TopLeft="264.583329390734,81.4666652099292" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Output Error]"
-          TopLeft="293.33333114783,37.7999997055531">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="97.2499982429047,43.6666655043761"
-              Start="0,0"
-              End="97.2499982429047,36.1666655043761">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="93.2499982429047,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="93.2499982429047,0"
-                    Point2="97.2499982429047,0"
-                    Point3="97.2499982429047,4" />
-                  <mssgle:LineSegment
-                    End="97.2499982429047,36.1666655043761" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="68.7237873054047,-17.43359375,57.052421875,11.43359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="212,42.6666666666667"
-          Id="Package\Data Flow Task\Odbc FeedBatchRecordError"
-          TopLeft="249.499997255703,171.166665465633" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Derived Column Output1]"
           TopLeft="390.583329390734,124.133331876596">
@@ -3376,14 +3358,52 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="146.583332569649,321.066664621035">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="18.5833329173426,54.1666666279237"
+              Start="0,0"
+              End="18.5833329173426,46.6666666279237">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.0833333139619" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.0833333139619"
+                    Point2="0,27.0833333139619"
+                    Point3="4,27.0833333139619" />
+                  <mssgle:LineSegment
+                    End="14.5833329173426,27.0833333139619" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.5833329173426,27.0833333139619"
+                    Point2="18.5833329173426,27.0833333139619"
+                    Point3="18.5833329173426,31.0833333139619" />
+                  <mssgle:LineSegment
+                    End="18.5833329173426,46.6666666279237" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    design-time-name="Package\Data Flow Task\Odbc FeedBatchRecordError">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3396,7 +3416,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\Odbc FeedBatchRecordError">
+    design-time-name="Package\Data Flow Task\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

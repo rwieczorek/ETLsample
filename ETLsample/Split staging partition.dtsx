@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Split staging partition"
   DTS:PackageType="5"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{23070F93-996D-488B-81C5-0F9663230866}">
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{5268E491-17B4-4365-BEF4-AB1DBF990E6A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -24,7 +24,7 @@
       DTS:Required="True">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">15</DTS:Property>
+        DTS:Name="ParameterValue">14</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
@@ -165,7 +165,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL uspAddFeedBatchLog History"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -211,7 +211,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL uspAddFeedBatchLog Staging"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -248,7 +248,91 @@
             </SQLTask:SqlTaskData>
           </DTS:ObjectData>
         </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\FELC Tables\SQL uspSplitPartitionFunctionForTable"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{769CC09A-9711-44BA-98CF-3523E73644F9}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL uspSplitPartitionFunctionForTable"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5274FF35-7388-4A1E-86AA-58E094B156B2}"
+              SQLTask:SqlStatementSource="EXEC Auxiliary.uspSplitPartitionFunctionForTable &#xA;&#x9;@Schema = ?&#xA;&#x9;,@Table = ?&#xA;&#x9;,@NewBoundary = ?&#xA;&#x9;,@NextUsedFilegroup = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::Schema"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::Table"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="$Package::FeedBatchKey"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::Filegroup"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\FELC Tables\SQL uspUpdateFeedBatchLog Staging"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B2FC5E96-A128-4AAD-B818-BD3B6B36D14A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL uspUpdateFeedBatchLog Staging"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5274FF35-7388-4A1E-86AA-58E094B156B2}"
+              SQLTask:SqlStatementSource="EXEC [Auxiliary].[uspUpdateFeedBatchLog]&#xA;                     @FeedBatchLogKey = ?&#xA;                     ,@RowsAffected = NULL;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::StagingFeedBatchLogKey"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
       </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FELC Tables.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{840E4043-5446-428D-AC23-051BB6B72D8D}"
+          DTS:From="Package\FELC Tables\SQL uspAddFeedBatchLog Staging"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\FELC Tables\SQL uspSplitPartitionFunctionForTable" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FELC Tables.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{7245349A-0687-4BE2-9A5B-E7E6BCF5EC0D}"
+          DTS:From="Package\FELC Tables\SQL uspSplitPartitionFunctionForTable"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\FELC Tables\SQL uspUpdateFeedBatchLog Staging" />
+      </DTS:PrecedenceConstraints>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
@@ -350,7 +434,98 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="238.666666666667,42.6666666666667"
+          Id="Package\FELC Tables\SQL uspAddFeedBatchLog History"
+          TopLeft="285.541660256063,17.3333299239477" />
+        <NodeLayout
+          Size="241.333333333334,42.6666666666667"
+          Id="Package\FELC Tables\SQL uspAddFeedBatchLog Staging"
+          TopLeft="13.6666643073161,17.5833297108611" />
+        <NodeLayout
+          Size="258.666666666667,42.6666666666667"
+          Id="Package\FELC Tables\SQL uspSplitPartitionFunctionForTable"
+          TopLeft="36.0555551002423,125.444440492657" />
+        <EdgeLayout
+          Id="Package\FELC Tables.PrecedenceConstraints[Constraint]"
+          TopLeft="134.333330973983,60.2499963775278">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="31.0555574595928,65.1944441151288"
+              Start="0,0"
+              End="31.0555574595928,57.6944441151288">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5972220575644" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.5972220575644"
+                    Point2="0,32.5972220575644"
+                    Point3="4,32.5972220575644" />
+                  <mssgle:LineSegment
+                    End="27.0555574595928,32.5972220575644" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27.0555574595928,32.5972220575644"
+                    Point2="31.0555574595928,32.5972220575644"
+                    Point3="31.0555574595928,36.5972220575644" />
+                  <mssgle:LineSegment
+                    End="31.0555574595928,57.6944441151288" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\FELC Tables\SQL uspUpdateFeedBatchLog Staging"
+          TopLeft="65.4722208459345,212.055552081598" />
+        <EdgeLayout
+          Id="Package\FELC Tables.PrecedenceConstraints[Constraint 1]"
+          TopLeft="165.388888433576,168.111107159323">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-17.9166675876411,43.944444922275"
+              Start="0,0"
+              End="-17.9166675876411,36.444444922275">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.9722224611375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.9722224611375"
+                    Point2="0,21.9722224611375"
+                    Point3="-4,21.9722224611375" />
+                  <mssgle:LineSegment
+                    End="-13.9166675876411,21.9722224611375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.9166675876411,21.9722224611375"
+                    Point2="-17.9166675876411,21.9722224611375"
+                    Point3="-17.9166675876411,25.9722224611375" />
+                  <mssgle:LineSegment
+                    End="-17.9166675876411,36.444444922275" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="562.666666666667,310"
+          Size="562.666666666667,352.666666666667"
+          Id="Package\FELC Tables"
+          TopLeft="144.345235944326,154.190473522743" />
         <NodeLayout
           Size="196.666666666667,42.6666666666667"
           Id="Package\SQL Get Relevant Tables"
@@ -359,47 +534,32 @@
           Size="194.666666666667,42.6666666666667"
           Id="Package\SQL uspGetStepByName"
           TopLeft="272.619043556707,17.9523806313674" />
-        <NodeLayout
-          Size="241.333333333334,42.6666666666667"
-          Id="Package\FELC Tables\SQL uspAddFeedBatchLog Staging"
-          TopLeft="13.6666643073161,17.5833297108611" />
-        <NodeLayout
-          Size="238.666666666667,42.6666666666667"
-          Id="Package\FELC Tables\SQL uspAddFeedBatchLog History"
-          TopLeft="285.541660256063,17.3333299239477" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="562.666666666667,140"
-          Size="562.666666666667,182.666666666667"
-          Id="Package\FELC Tables"
-          TopLeft="144.345235944326,154.190473522743" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="138.749999397745,60.8666663412253">
+          TopLeft="138.749999397745,60.8666663412254">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="194.484125435471,93.3238071815173"
+              EndConnector="194.48412543547,93.3238071815177"
               Start="0,0"
-              End="194.484125435471,85.8238071815173">
+              End="194.48412543547,85.8238071815177">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,51.8355103458417" />
+                    End="0,51.8355103458418" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,51.8355103458417"
-                    Point2="0,55.8355103458417"
-                    Point3="4,55.8355103458417" />
+                    Point1="0,51.8355103458418"
+                    Point2="0,55.8355103458418"
+                    Point3="4,55.8355103458418" />
                   <mssgle:LineSegment
-                    End="190.484125435471,55.8355103458417" />
+                    End="190.48412543547,55.8355103458418" />
                   <mssgle:CubicBezierSegment
-                    Point1="190.484125435471,55.8355103458417"
-                    Point2="194.484125435471,55.8355103458417"
-                    Point3="194.484125435471,59.8355103458417" />
+                    Point1="190.48412543547,55.8355103458418"
+                    Point2="194.48412543547,55.8355103458418"
+                    Point3="194.48412543547,59.8355103458418" />
                   <mssgle:LineSegment
-                    End="194.484125435471,85.8238071815173" />
+                    End="194.48412543547,85.8238071815177" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -410,30 +570,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="369.952376890041,60.619047298034">
+          TopLeft="369.95237689004,60.6190472980341">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="148.170636832064,93.5714262247086"
+              EndConnector="148.170636832063,93.571426224709"
               Start="0,0"
-              End="148.170636832064,86.0714262247086">
+              End="148.170636832063,86.071426224709">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,51.9836604917207" />
+                    End="0,51.9836604917209" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,51.9836604917207"
-                    Point2="0,55.9836604917207"
-                    Point3="4,55.9836604917207" />
+                    Point1="0,51.9836604917209"
+                    Point2="0,55.9836604917209"
+                    Point3="4,55.9836604917209" />
                   <mssgle:LineSegment
-                    End="144.170636832064,55.9836604917207" />
+                    End="144.170636832063,55.9836604917209" />
                   <mssgle:CubicBezierSegment
-                    Point1="144.170636832064,55.9836604917207"
-                    Point2="148.170636832064,55.9836604917207"
-                    Point3="148.170636832064,59.9836604917207" />
+                    Point1="144.170636832063,55.9836604917209"
+                    Point2="148.170636832063,55.9836604917209"
+                    Point3="148.170636832063,59.9836604917209" />
                   <mssgle:LineSegment
-                    End="148.170636832064,86.0714262247086" />
+                    End="148.170636832063,86.071426224709" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
